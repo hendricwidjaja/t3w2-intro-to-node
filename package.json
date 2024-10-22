@@ -1,0 +1,19 @@
+{
+  "name": "t3w2-intro-to-node",
+  "version": "1.0.0",
+  "description": "Dice Rolling Application in the Terminal",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node src/index.js",
+    "checking": "npm run check && npm start"
+  },
+  "keywords": [
+    "dice",
+    "Hendric",
+    "fun",
+    "game"
+  ],
+  "author": "Hendric",
+  "license": "ISC"
+}
