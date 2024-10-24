@@ -34,18 +34,22 @@ prompt ([
 */
 
 function getDiceSide() {
-    const diceSide = promptSync("How many sided dice do you want to roll? ");
-    try {
-        const parsedDiceSide = parseInt(diceSide);
-        if (isNaN(parsedDiceSide)) {
-            throw new Error('Please enter a valid number.');
+    do {
+        const diceSide = promptSync("How many sided dice do you want to roll? ");
+        try {
+            const parsedDiceSide = parseInt(diceSide);
+            if (isNaN(parsedDiceSide)) {
+                throw new Error("Please enter a valid number.");
+            }
+            const diceResult = rollDice(parsedDiceSide);
+            console.log(`You rolled a ${diceResult}-sided dice.`);
+        } catch (error) {
+            console.error("You got an error!!");
+            console.log(error);
+        } finally {
+            console.log("Dice roll operation completed.")
         }
-        const diceResult = rollDice(parsedDiceSide);
-        console.log(`You rolled a ${diceResult}-sided dice.`);
-    } catch (error) {
-        console.error("You got an error!!");
-        console.log(error);
-    }
+    } while (promptSync("Do you want to roll again? (y/n) ").toLocaleLowerCase() === 'y');
 }
 
 getDiceSide();
