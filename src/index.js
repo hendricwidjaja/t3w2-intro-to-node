@@ -10,7 +10,7 @@ console.log("Dice Roller Application starts...")
  */
 function rollDice(diceSide=6) {
     if (diceSide <= 0) {
-        throw new Error("Dice must be greater than 0.");
+        throw new Error("Number of dice-sides must be greater than 0.");
     }
     let diceResult = 0;
     diceResult = Math.ceil(Math.random() * diceSide);
@@ -33,16 +33,19 @@ prompt ([
 });
 */
 
-const diceSide = promptSync("How many sided dice do you want to roll? ");
-
-try {
-    const parsedDiceSide = parseInt(diceSide);
-    if (isNaN(parsedDiceSide)) {
-        throw new Error('Please enter a valid number.');
+function getDiceSide() {
+    const diceSide = promptSync("How many sided dice do you want to roll? ");
+    try {
+        const parsedDiceSide = parseInt(diceSide);
+        if (isNaN(parsedDiceSide)) {
+            throw new Error('Please enter a valid number.');
+        }
+        const diceResult = rollDice(parsedDiceSide);
+        console.log(`You rolled a ${diceResult}-sided dice.`);
+    } catch (error) {
+        console.error("You got an error!!");
+        console.log(error);
     }
-    const diceResult = rollDice(parsedDiceSide);
-    console.log(`You rolled a ${diceResult}-sided dice.`);
-} catch (error) {
-    console.error("You got an error!");
-    console.log(error);
 }
+
+getDiceSide();
